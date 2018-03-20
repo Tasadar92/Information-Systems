@@ -1,0 +1,6 @@
+Main\Controller\MainController.class
+com\example\SP10\Sp10Application.class
+Main\Controller\PeliculasService.class
+Main\Controller\PeliculasRestController.class
+Main\Model\Actor.class
+Main\Model\Pelicula.class
