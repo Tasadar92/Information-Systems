@@ -1,0 +1,6 @@
+Main\Controller\MainController.class
+Main\Model\Director.class
+Main\Repository\PeliculaRestRepository.class
+Main\Repository\DirectorRestRepository.class
+Main\Sp12Application.class
+Main\Model\Pelicula.class

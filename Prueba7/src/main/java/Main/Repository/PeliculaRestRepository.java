@@ -1,0 +1,24 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Main.Repository;
+
+import Main.Model.Pelicula;
+import java.util.List;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+
+/**
+ *
+ * @author danie
+ */
+@RepositoryRestResource(collectionResourceRel = "peliculas", path = "peliculas")
+public interface PeliculaRestRepository extends CrudRepository<Pelicula, Integer> {
+
+    // Declaración de método para buscar peliculas por título:
+    List<Pelicula> findByTitulo(@Param("titulo") String titulo);
+
+}
