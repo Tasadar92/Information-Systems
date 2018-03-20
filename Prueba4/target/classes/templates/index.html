@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Ejemplo consumo REST JSON</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script language="JavaScript">
+        // Función para obtener un juego a partir de un ID (índice de la lista en memoria)
+        function getJuegoById() {
+            var id = $('#idjuego').val();
+            $.ajax({
+                url: "http://localhost:8080/juegos/"+id
+            }).then(function(data) {
+                $('.juegos-id').append(data.nombre);
+                $('.juegos-anio').append(data.anio);
+                $('.juegos-content').append(data.descripcion);
+            });
+        }
+        // Función para obtener todos los juegos
+        function getJuegos() {
+            $.ajax({
+                url: "http://localhost:8080/juegos/"
+            }).then(function(data) {
+                $.each(data, function (index, value) {
+                    $('#result tr:last').after('<tr><td>'+value['nombre']+'</td><td>'+value['anio']+'</td><td>'+value['descripcion']+'</td></tr>');
+                });
+            });
+        }
+        // Función para añadir un juego a través de la API REST
+        function addJuego() {
+            // Primero se captan los datos del formulario y pasan a un objeto.
+            var formData = {};
+            formData['nombre'] = $('#nombre').val();
+            formData['anio'] = $('#anio').val();
+            formData['descripcion'] = $('#descripcion').val();
+            $.ajax({
+                type: "POST",
+                url: 'http://localhost:8080/juegos/',
+                dataType: 'json',
+                async: false,
+                // El objeto hay que convertirlo a texto
+                data: JSON.stringify(formData),
+                contentType: 'application/json',
+                // Handler en caso de éxito
+                success: function () {
+                    alert("Juego insertado");
+                }
+            });
+        }
+    </script>
+
+</head>
+<body>
+    <div id="uno">
+        <h2>Consulta un juego por id</h2>
+        <form action="javascript:getJuegoById();">
+            Identificador del juego a cargar:&nbsp;<input id='idjuego' type='text'/>
+            <input type="submit"/>
+        </form>
+        <p class="juegos-id">El identificador es : </p>
+        <p class="juegos-anio">El anio es : </p>
+        <p class="juegos-content">La descripcion es : </p>
+    </div>
+
+    <br/>
+
+    <div id="todos">
+        <h2>Consulta todos los juegos</h2>
+        <p><a href="javascript:getJuegos();">Cargar todos los juegos</a></p>
+        <table id="result">
+            <tr><td>Titulo</td><td>Anio</td><td>Descripcion</td></tr>
+        </table>
+    </div>
+
+    <br/>
+
+    <div id="introducir">
+        <h2>Nuevo juego</h2>
+        <form id="nuevojuego" action="javascript:addJuego();">
+            Titulo:&nbsp;<input name="nombre" id="nombre" type="text"/>
+            Anio:&nbsp;<input name="anio" id="anio" type="text"/>
+            Descripcion:&nbsp;<input name="descripcion" id="descripcion" type="text"/>
+            <input type="submit"/>
+        </form>
+    </div>
+</body>
+</html>
