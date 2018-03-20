@@ -1,0 +1,4 @@
+Main\Controller\MainController.class
+Main\Repository\PeliculasRestRepository.class
+Main\Sp11Application.class
+Main\Model\Pelicula.class
