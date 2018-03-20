@@ -6,8 +6,13 @@ En este repositorio se pueden encontrar proyectos de Spring Boot organizados des
 
    
 #Prueba1: Spring Data
+
 #Prueba2 y Prueba3: Spring Data y JDBC
+
 #Prueba4: Spring REST
+
 #Prueba5: Cliente JavaScript en Spring REST
+
 #Prueba6: Spring Data REST
+
 #Prueba7: Spring Data REST
